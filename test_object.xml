@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<root>
+	<object id="">
+		<options/>
+		<shau_list>
+			<shau id="">
+				<machine_list>
+					<machine id="">
+						<unit_list>
+							<unit id="">
+								<item_list>
+		\							<item/>
+								</item_list>
+							</unit>
+						</unit_list>
+					</machine>
+				</machine_list>
+			</shau>
+		</shau_list>
+	</object>
+</root>

@@ -13,4 +13,12 @@ namespace XML {
 		return _self.get();
 	}
 
+	void XML_Manager::ReadXML(std::string filename, XML_Reader*)
+	{
+	}
+
+	void XML_ObjectReader::Read(){
+		
+	}
+
 }
