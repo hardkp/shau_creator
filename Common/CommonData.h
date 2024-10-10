@@ -1,20 +1,33 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <any>
+#include <boost/property_tree/ptree.hpp>
 
 namespace Data {
 
-	struct SHAUData;
-	struct OptionData;
+	struct SHAUData;	
 	struct MachineData;
 	struct UnitData;
-	struct ItemData;
+
+	struct OptionData {
+		std::string _id;
+	};
+
+	struct ItemData {
+		std::string _id;
+		std::vector<OptionData> _optionDataList = {};
+		void ReadXML(boost::property_tree::ptree::value_type objectNode);
+	};
+
 
 
 	struct ObjectData { // Object: 
 		std::string _id;
-		std::vector<SHAUData> _shauDataList;
-		std::vector<OptionData> _optionDataList;
+		std::vector<OptionData> _optionDataList = {};
+		std::vector<SHAUData> _shauDataList = {};
+		void ReadXML(boost::property_tree::ptree::value_type objectNode);
+
 	};
 
 
@@ -22,16 +35,18 @@ namespace Data {
 		std::string _id;
 		std::vector<MachineData> _machineDataList;
 		std::vector<OptionData> _optionDataList;
+		void ReadXML(boost::property_tree::ptree::value_type objectNode);
 	};
 
 	struct MachineData {
 		std::string _id;
 		std::vector<UnitData> _unitDataList;
 		std::vector<OptionData> _optionDataList;
+		void ReadXML(boost::property_tree::ptree::value_type objectNode);
 	};
 
 	enum class UnitType {
-		TEN, FAN, WaterHeater, AirValve,
+		UNDEFINED, TEN, FAN, WATER_HEATER, AIR_VALVE,
 	};
 
 	enum class ParameterType {
@@ -58,6 +73,7 @@ namespace Data {
 		std::vector<UnitParameter> _parameters;
 		std::vector<ItemData> _itemDataList;
 		std::vector<OptionData> _optionDataList;
+		void ReadXML(boost::property_tree::ptree::value_type objectNode);
 	};
 
 }

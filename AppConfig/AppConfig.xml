@@ -1,6 +1,8 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<directory_list>
-		<directory id="test_object_path" path="D:/source/repos/shau_creator_2/src/test_object.xml"/>
+		<directory id="test" path="test"/>
+		<directory id="test_object_path" path="../../src/test_object.xml"/>
+		<directory id="qwerty" path="qwerty"/>
 	</directory_list>
 </root>
