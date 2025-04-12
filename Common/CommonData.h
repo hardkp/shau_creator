@@ -10,44 +10,24 @@ namespace Data {
 	struct MachineData;
 	struct UnitData;
 
-	struct OptionData {
-		std::string _id;
-	};
-
-	struct ItemData {
-		std::string _id;
-		std::vector<OptionData> _optionDataList = {};
-		void ReadXML(boost::property_tree::ptree::value_type objectNode);
-	};
+	
 
 
 
-	struct ObjectData { // Object: 
-		std::string _id;
-		std::vector<OptionData> _optionDataList = {};
-		std::vector<SHAUData> _shauDataList = {};
-		void ReadXML(boost::property_tree::ptree::value_type objectNode);
-
-	};
+	
 
 
-	struct SHAUData {
-		std::string _id;
-		std::vector<MachineData> _machineDataList;
-		std::vector<OptionData> _optionDataList;
-		void ReadXML(boost::property_tree::ptree::value_type objectNode);
-	};
 
-	struct MachineData {
-		std::string _id;
-		std::vector<UnitData> _unitDataList;
-		std::vector<OptionData> _optionDataList;
-		void ReadXML(boost::property_tree::ptree::value_type objectNode);
-	};
 
-	enum class UnitType {
-		UNDEFINED, TEN, FAN, WATER_HEATER, AIR_VALVE,
-	};
+
+	
+
+
+	
+
+	
+
+	
 
 	enum class ParameterType {
 		VOLTAGE,
@@ -67,13 +47,6 @@ namespace Data {
 
 	};
 
-	struct UnitData {
-		std::string _id;
-		UnitType _type;
-		std::vector<UnitParameter> _parameters;
-		std::vector<ItemData> _itemDataList;
-		std::vector<OptionData> _optionDataList;
-		void ReadXML(boost::property_tree::ptree::value_type objectNode);
-	};
+
 
 }

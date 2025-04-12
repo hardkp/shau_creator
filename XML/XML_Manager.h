@@ -2,11 +2,11 @@
 #include <memory>
 #include <string>
 #include <boost/property_tree/ptree.hpp>
+#include "Common/CommonData.h"
+#include "BaseLogic/Object.h"
 
 namespace XML {
-
 	
-
 	class XML_Reader {
 	public:
 		using XMLTreePtr = std::shared_ptr<boost::property_tree::ptree>;
@@ -17,12 +17,15 @@ namespace XML {
 	public:
 		virtual ~XML_Reader() = default;
 		virtual bool OpenFile(std::string filePath);
-		virtual void Read() {}
+		virtual bool Read() { return false; }
 	};
 
 	class XML_ObjectReader : public XML_Reader {
+	private:
+		BaseLogic::ObjectComponents::ObjectData _objectData;
 	public:
-		void Read() override;
+		bool Read() override;
+		BaseLogic::ObjectComponents::ObjectData GetObjectData();
 	};
 
 	class XML_Manager { // синглтон

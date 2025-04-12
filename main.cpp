@@ -1,9 +1,8 @@
 #include <QApplication>
 #include <iostream>
-#include "Unit.h"
-#include "XML/XML_Manager.h"
 
 #include "AppConfigManager.h"
+#include "BaseLogic/ObjectComponentManager.h"
 
 
 int main(int argc, char** argv) {
@@ -14,23 +13,16 @@ int main(int argc, char** argv) {
 
 	// TODO сериализация XML структуры объекта
 
-
-
-	/*Data::Parameter p(Data::ParameterType::VOLTAGE, 12.0f);
-	std::cout << p.GetValue<float>();*/
-
-	/*Data::Unit::Manager::Instance()->MakeObject("qwerty");
-	Data::Unit::Manager::Instance()->MakeObject("qwerty");*/
-
 	AppConfig::Manager xml_parse;
 	auto path = xml_parse.GetPathById("test_object_path");
 
-	std::cout << path << "\n";
-	auto reader = new XML::XML_ObjectReader;
+	BaseLogic::ObjectComponentManager componentMngr{};
 
-	if (reader->OpenFile(path)) {
-		reader->Read();
+	if (!path.empty() && componentMngr.LoadObject(path)) {
+		componentMngr.CalculateObject();
 	}
+
 	
 	return app.exec();
+
 }

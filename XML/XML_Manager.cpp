@@ -22,36 +22,30 @@ namespace XML {
 
 	}
 
-	void XML_ObjectReader::Read()
+	bool XML_ObjectReader::Read() try
 	{
-		//auto objectNode = 
-		Data::ObjectData objectData;
+		 // необходимо определить логику 
+		//ошибки чтения файла
 
 		for (const auto& objectNode : _tree->get_child("root")) {
  
-			objectData._id = objectNode.second.get<std::string>("<xmlattr>.id");	
-			objectData.ReadXML(objectNode);
+			_objectData._id = objectNode.second.get<std::string>("<xmlattr>.id");	
+			_objectData._componentType = BaseLogic::ObjectComponents::ComponentType::OBJECT;
+			_objectData.ReadXML(objectNode);
 
 		}
 
-		objectData._id == "";
+		return true;
 		
-		//std::cout << objectNode << "\n";
+	}
+	catch (const std::exception& exc) {
+		std::cout << "[XML_ObjectReader][Read] - read object error\n";
+		return false;
+	}
 
-
-
-		/*for (const auto& directory : tree.get_child("root.directory_list")) {
-
-			auto idPath = directory.second.get<std::string>("<xmlattr>.id");
-
-			std::cout << idPath << "\n";
-
-			if (idPath == id) {
-				auto path = directory.second.get<std::string>("<xmlattr>.path");
-				return path;
-			}
-
-		}*/
+	BaseLogic::ObjectComponents::ObjectData XML_ObjectReader::GetObjectData()
+	{
+		return _objectData;
 	}
 
 	bool XML_Reader::OpenFile(std::string filePath)
